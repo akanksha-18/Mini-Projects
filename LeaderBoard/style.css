@@ -1,6 +1,14 @@
 body{
-    background-color: #E3E7E8;
+    /* background-color: #E3E7E8; */
+    background: rgb(110,103,103);
+background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(23,26,26,1) 100%, rgba(21,32,168,0.9389005602240896) 100%);
     font-family: system-ui;
+}
+h1{
+    font-size: 50px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent;
 }
 .container{
     width: 1000px;
@@ -47,7 +55,7 @@ header .shopping span{
 }
 .list .item img{
     width: 90%;
-    height: 430px;
+    height: 300px;
     object-fit: cover;
 }
 .list .item .title{
