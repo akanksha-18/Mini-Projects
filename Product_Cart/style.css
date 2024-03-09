@@ -1,7 +1,6 @@
 body{
-    /* background-color: #E3E7E8; */
     background: rgb(110,103,103);
-background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(23,26,26,1) 100%, rgba(21,32,168,0.9389005602240896) 100%);
+    background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(23,26,26,1) 100%, rgba(21,32,168,0.9389005602240896) 100%);
     font-family: system-ui;
 }
 h1{
