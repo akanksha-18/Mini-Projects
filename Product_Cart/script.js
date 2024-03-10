@@ -16,39 +16,39 @@ closeShopping.addEventListener('click', ()=>{
 let products = [
     {
         id: 1,
-        name: 'PRODUCT NAME 1',
+        name: 'Burger',
         image: '1.jpg',
-        price: 120000
+        price: 1200
     },
     {
         id: 2,
-        name: 'PRODUCT NAME 2',
+        name: 'Pan Cake',
         image: '2.jpg',
-        price: 120000
+        price: 220
     },
     {
         id: 3,
-        name: 'PRODUCT NAME 3',
+        name: 'Fresh Salad',
         image: '3.jpg',
-        price: 220000
+        price: 550
     },
     {
         id: 4,
-        name: 'PRODUCT NAME 4',
+        name: 'Maple Toast',
         image: '4.jpg',
-        price: 123000
+        price: 330
     },
     {
         id: 5,
-        name: 'PRODUCT NAME 5',
+        name: 'Ravioli',
         image: '5.jpg',
-        price: 320000
+        price: 670
     },
     {
         id: 6,
-        name: 'PRODUCT NAME 6',
+        name: 'Mushroom',
         image: '6.jpg',
-        price: 120000
+        price: 890
     }
 ];
 let listCards  = [];
@@ -60,7 +60,7 @@ function initApp(){
             <img src="images/${value.image}">
             <div class="title">${value.name}</div>
             <div class="price">${value.price.toLocaleString()}</div>
-            <button onclick="addToCard(${key})">Add To Card</button>`;
+            <button onclick="addToCard(${key})">Add To Cart</button>`;
         list.appendChild(newDiv);
     })
 }
