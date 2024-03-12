@@ -60,7 +60,8 @@ function initApp(){
             <img src="images/${value.image}">
             <div class="title">${value.name}</div>
             <div class="price">${value.price.toLocaleString()}</div>
-            <button onclick="addToCard(${key})">Add To Cart</button>`;
+            <button onclick="addToCard(${key})">Add To Cart</button>
+            <button onclick="orderNow(${key})">Order Now</button>`;
         list.appendChild(newDiv);
     })
 }
@@ -103,5 +104,39 @@ function changeQuantity(key, quantity){
         listCards[key].quantity = quantity;
         listCards[key].price = quantity * products[key].price;
     }
+    reloadCard();
+}
+function orderNow(key) {
+    let orderedProduct = listCards[key];
+
+    if (orderedProduct && orderedProduct.quantity > 0) {
+        simulateOrder(orderedProduct)
+            .then(() => {
+                alert(`Order placed for ${orderedProduct.name} successfully!`);
+                // Optional: You can clear the cart or perform other actions after successful order placement.
+                clearCart();
+            })
+            .catch(error => {
+                alert(`Failed to place order. ${error}`);
+            });
+    } else {
+        alert("Please add items to the cart before placing an order.");
+    }
+}
+
+function simulateOrder(product) {
+    return new Promise((resolve, reject) => {
+        // Simulating an asynchronous order placement process
+        setTimeout(() => {
+            // Assuming the order is successful
+            resolve();
+            // You can also reject the promise in case of an error
+            // reject("Some error occurred while placing the order.");
+        }, 2000); // Simulating a 2-second delay for the order process
+    });
+}
+
+function clearCart() {
+    listCards = [];
     reloadCard();
 }
