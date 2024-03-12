@@ -18,7 +18,10 @@ body {
 h1 {
     color: #e74c3c;
 }
-
+.custom-image{
+    height: 150px;
+    width: 150px;
+}
 button {
     background-color: #3498db;
     color: #fff;

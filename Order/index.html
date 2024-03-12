@@ -10,20 +10,16 @@
     <div id="container">
         <h1>Burger and Fries</h1>
         <div id="foodList">
-            <label><input type="checkbox" id="burgerCheckbox"> Burger</label>
-            <label><input type="checkbox" id="friesCheckbox"> Fries</label>
-            <label><input type="checkbox" id="drinkCheckbox"> Drink</label>
-            <label><input type="checkbox" id="pizzaCheckbox">Pizza</label>
+            <label><input type="checkbox" id="burgerCheckbox" onchange="updateImage('burgerCheckbox')"> Burger</label>
+            <label><input type="checkbox" id="friesCheckbox" onchange="updateImage('friesCheckbox')"> Fries</label>
+            <label><input type="checkbox" id="drinkCheckbox" onchange="updateImage('drinkCheckbox')"> Drink</label>
+            <label><input type="checkbox" id="pizzaCheckbox" onchange="updateImage('pizzaCheckbox')"> Pizza</label>
         </div>
         <div class="images">
-            <img src="images/food-photographer-E94j3rMcxlw-unsplash.jpg" alt="">
-            <img src="images/pexels-engin-akyurt-2271107.jpg">
-            <img src="images/pexels-valeria-boltneva-1199957.jpg" alt="">
-            <img src="images/pexels-jonathan-borba-2983103.jpg">
+            <img id="foodImage" src="images/1.jpg" alt="Default Image">
         </div>
         <button onclick="placeOrder()">Order Food</button>
         <div id="loading">Processing your order...</div>
-        <div id="foodImage"><img src="" alt="Ordered Food"></div>
         <div id="orderID"></div>
     </div>
 
