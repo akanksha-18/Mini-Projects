@@ -2,25 +2,57 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Burger King</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="container">
-        <h1>Burger and Fries</h1>
-        <div id="foodList">
-            <label><input type="checkbox" id="burgerCheckbox" onchange="updateImage('burgerCheckbox')"> Burger</label>
-            <label><input type="checkbox" id="friesCheckbox" onchange="updateImage('friesCheckbox')"> Fries</label>
-            <label><input type="checkbox" id="drinkCheckbox" onchange="updateImage('drinkCheckbox')"> Drink</label>
-            <label><input type="checkbox" id="pizzaCheckbox" onchange="updateImage('pizzaCheckbox')"> Pizza</label>
+<body class="">
+    
+    <div class="container">
+        <header>
+            <h1>Menu Cart</h1>
+            <div class="shopping">
+                <img src="images/cart.jpg">
+                <span class="quantity">0</span>
+            </div>
+        </header>
+ 
+        <div class="menuList">
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="0"> Burger
+            </label>
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="1"> Pan cake
+            </label>
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="2"> Fresh Salad
+            </label>
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="3"> Maple Toast
+            </label>
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="4"> Ravioli
+            </label>
+            <label>
+                <input type="checkbox" class="menuItemCheckbox" value="5"> Mushroom
+            </label>
         </div>
-        <div class="images">
-            <img id="foodImage" src="images/1.jpg" alt="Default Image">
+        <div class="list">
+           
         </div>
-        <button onclick="placeOrder()">Order Food</button>
-        <div id="loading">Processing your order...</div>
-        <div id="orderID"></div>
+          
+        
+    </div>
+    <div class="card">
+        <h1>Cart</h1>
+        <ul class="listCard">
+        </ul>
+        <div class="checkOut">
+            <div class="total">0</div>
+            <div class="closeShopping">Close</div>
+            <div class="orderNowButton" onclick="orderNowAll()">Order Now</div>
+        </div>
     </div>
 
     <script src="script.js"></script>

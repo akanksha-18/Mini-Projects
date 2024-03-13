@@ -1,37 +1,218 @@
-function placeOrder() {
-            
-    document.getElementById('foodList').style.display = 'none';
-    document.getElementById('loading').style.display = 'block';
-   
-    const imageMap = {
-        burgerCheckbox: "images/1.jpg",
-        friesCheckbox: "images/fries-image.jpg",
-        drinkCheckbox: "images/drink-image.jpg",
-        pizzaCheckbox: "images/pizza-image.jpg"
-    };
 
-    function updateImage(checkboxId) {
-        const imageSrc = imageMap[checkboxId] || "images/default-image.jpg";
-        document.getElementById('foodImage').src = imageSrc;
+let openShopping = document.querySelector('.shopping');
+let closeShopping = document.querySelector('.closeShopping');
+let list = document.querySelector('.list');
+let listCard = document.querySelector('.listCard');
+let body = document.querySelector('body');
+let total = document.querySelector('.total');
+let quantity = document.querySelector('.quantity');
+let menuList = document.querySelector('.menuList');
+
+let products = [
+    {
+        id: 1,
+        name: 'Burger',
+        image: '1.jpg',
+        price: 1200
+    },
+    {
+        id: 2,
+        name: 'Pan Cake',
+        image: '2.jpg',
+        price: 220
+    },
+    {
+        id: 3,
+        name: 'Fresh Salad',
+        image: '3.jpg',
+        price: 550
+    },
+    {
+        id: 4,
+        name: 'Maple Toast',
+        image: '4.jpg',
+        price: 330
+    },
+    {
+        id: 5,
+        name: 'Ravioli',
+        image: '5.jpg',
+        price: 670
+    },
+    {
+        id: 6,
+        name: 'Mushroom',
+        image: '6.jpg',
+        price: 890
     }
-    
-    const orderPromise = new Promise(resolve => {
-        const randomSeconds = Math.floor(Math.random() * 5000) + 1000; 
+];
+
+let listCards = [];
+
+function initApp() {
+    products.forEach((value, key) => {
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="images/${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCart(${key})">Add To Cart</button>
+            <button onclick="orderNow(${key})">Order Now</button>`;
+        list.appendChild(newDiv);
+    });
+}
+
+function addToCart(key) {
+    if (listCards[key] == null) {
+        listCards[key] = JSON.parse(JSON.stringify(products[key]));
+        listCards[key].quantity = 1;
+        showItemImage(key);
+    }
+    reloadCard();
+}
+
+function reloadCard() {
+    listCard.innerHTML = '';
+    let count = 0;
+    let totalPrice = 0;
+
+    listCards.forEach((value, key) => {
+        totalPrice += value.price;
+        count += value.quantity;
+
+        if (value != null) {
+            let newDiv = document.createElement('li');
+            newDiv.innerHTML = `
+                <div><img src="images/${value.image}"/></div>
+                <div>${value.name}</div>
+                <div>${value.price.toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+                    <div class="count">${value.quantity}</div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                </div>`;
+            listCard.appendChild(newDiv);
+        }
+    });
+
+    total.innerText = totalPrice.toLocaleString();
+    quantity.innerText = count;
+}
+
+function changeQuantity(key, quantity) {
+    if (quantity === 0) {
+        delete listCards[key];
+    } else {
+        listCards[key].quantity = quantity;
+        listCards[key].price = quantity * products[key].price;
+    }
+    reloadCard();
+}
+
+function orderNow(key) {
+    let orderedProduct = listCards[key];
+
+    if (orderedProduct && orderedProduct.quantity > 0) {
+        simulateOrder(orderedProduct)
+            .then(() => {
+                alert(`Order placed for ${orderedProduct.name} successfully!`);
+                clearCart();
+            })
+            .catch(error => {
+                alert(`Failed to place order. ${error}`);
+            });
+    } else {
+        alert("Please add items to the cart before placing an order.");
+    }
+}
+
+function simulateOrder(product) {
+    return new Promise((resolve) => {
         setTimeout(() => {
             resolve();
-        }, randomSeconds);
-    });
-
-    orderPromise.then(() => {
-        document.getElementById('loading').style.display = 'none';
-        document.getElementById('foodImage').style.display = 'block';
-        document.getElementById('foodImage').innerHTML = '<img src="images/1.jpg" alt="Ordered Food" class="custom-image">';
-        document.getElementById('orderID').style.display = 'block';
-        document.getElementById('orderID').innerText = 'Order ID: ' + generateOrderID();
+        }, 2000);
     });
 }
 
-function generateOrderID() {
-    // A simple function to generate a random order ID
-    return 'BK' + Math.floor(Math.random() * 10000);
+function clearCart() {
+    listCards = [];
+    reloadCard();
 }
+
+
+function showItemImage(key) {
+    const selectedItems = getSelectedItems();
+    list.innerHTML = '';
+
+    selectedItems.forEach(itemKey => {
+        const selectedItem = products[itemKey];
+        
+        if (selectedItem) {
+            const itemContainer = document.createElement('div');
+            itemContainer.classList.add('item');
+
+            const imageContainer = document.createElement('div');
+            const image = document.createElement('img');
+
+            image.style.height = '100px'; 
+            image.style.width = '100px'; 
+
+            image.src = `images/${selectedItem.image}`;
+            image.alt = selectedItem.name;
+
+            imageContainer.appendChild(image);
+
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.classList.add('buttons-container');
+
+            const addToCartButton = document.createElement('button');
+            addToCartButton.textContent = 'Add To Cart';
+            addToCartButton.onclick = function() {
+                addToCart(itemKey);
+            };
+
+            const orderNowButton = document.createElement('button');
+            orderNowButton.textContent = 'Order Now';
+            orderNowButton.onclick = function() {
+                orderNow(itemKey);
+            };
+
+            buttonsContainer.appendChild(addToCartButton);
+            buttonsContainer.appendChild(orderNowButton);
+
+            itemContainer.appendChild(imageContainer);
+            itemContainer.appendChild(buttonsContainer);
+
+            list.appendChild(itemContainer);
+        }
+    });
+}
+
+function getSelectedItems() {
+    const checkboxes = document.querySelectorAll('.menuItemCheckbox');
+    const selectedItems = [];
+
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            selectedItems.push(index);
+        }
+    });
+
+    return selectedItems;
+}
+
+
+menuList.addEventListener('change', function (event) {
+    const checkbox = event.target;
+    
+    if (checkbox.classList.contains('menuItemCheckbox')) {
+        const key = checkbox.value;
+
+        if (checkbox.checked) {
+            showItemImage(key);
+        }
+    }
+});
+
+initApp();
