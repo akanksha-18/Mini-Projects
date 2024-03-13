@@ -33,7 +33,36 @@ async function getJoke() {
         btnEl.disabled = false;
         btnEl.innerText = "Tell me a joke";
         console.log(error);
-        spinnerEl.style.display = "none"; // Hide spinner in case of an error
+        spinnerEl.style.display = "none"; 
+    }
+}
+function increaseTextSize() {
+    changeTextSize(2); 
+}
+
+function decreaseTextSize() {
+    changeTextSize(-2); 
+}
+
+function changeTextSize(increment) {
+    const jokeElement = document.getElementById("joke");
+    const currentSize = parseFloat(window.getComputedStyle(jokeElement, null).getPropertyValue('font-size'));
+    const newSize = currentSize + increment + "px";
+
+    jokeElement.style.fontSize = newSize;
+}
+function shareJoke() {
+    const jokeText = document.getElementById("joke").innerText;
+
+    if (navigator.share) {
+        navigator.share({
+            title: "Dad Joke",
+            text: jokeText,
+        })
+        .then(() => console.log("Shared successfully"))
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+        alert("Web Share API not supported. You can manually copy the joke and share it.");
     }
 }
 

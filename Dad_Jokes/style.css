@@ -21,8 +21,10 @@ background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(150,197,199,1) 
     text-align: center;
     background: rgb(110,103,103);
 background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(150,199,199,1) 100%, rgba(21,32,168,0.9389005602240896) 100%);
-    
-
+}
+.humor-visual {
+    font-size: 48px;
+    margin-bottom: 10px;
 }
 .heading{
         font-size: 35px;
@@ -36,7 +38,7 @@ background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(150,199,199,1) 
      font-size: 40px;
      margin-bottom: 10px;
 }
-#btn{
+.btn{
     font-size: 18px;
     font-weight: 700;
     border-radius: 5px;
