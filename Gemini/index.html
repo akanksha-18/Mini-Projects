@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini</title>
-    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
    <div class="container">
     <div class="left">
-        
+      <div class="user-questions"></div>
+      <button class="toggle-btn">Toggle Dark Mode</button> <!-- Toggle button at the bottom -->
     </div>
     <div class="right">
         
         <main>
             <div class="msg-container">
                 <div class="user-msg">
-                   
-                    Hello
                     <img src="images/user_1177568.png" alt="User" class="avatar">
+                    Hello
                 </div>
                 <div class="bot-msg">
                     <img src="images/robot_3558860.png" alt="Bot" class="avatar">
@@ -35,48 +34,13 @@
     </div>
 </div> 
    
-    <script type="importmap">
+     <script type="importmap">
         {
           "imports": {
             "@google/generative-ai": "https://esm.run/@google/generative-ai"
           }
         }
       </script>
-  
-      <!-- <script type="module">
-        import { GoogleGenerativeAI } from "@google/generative-ai";
-  
-        const API_KEY = "AIzaSyC1oRcJ7eAQaAO4kBqTJMt2w-ekoOCfj-I";
-        const genAI = new GoogleGenerativeAI(API_KEY);
-  
-        document.querySelector(".btn").addEventListener("click", run);
-  
-        async function run() {
-          const userInput = document.querySelector(".user-input").value;
-  
-          // Display user message
-          const userMessageDiv = document.createElement("div");
-          userMessageDiv.className = "user-msg";
-        //   userMessageDiv.textContent = `User: ${userInput}`;
-        userMessageDiv.innerHTML = `${userInput}<img src="images/user_1177568.png" alt="User" class="avatar"> `;
-          document.querySelector(".msg-container").appendChild(userMessageDiv);
-  
-          const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-          const result = await model.generateContent(userInput);
-          const response = await result.response;
-          const text = response.text();
-  
-          // Display bot message
-          const botMessageDiv = document.createElement("div");
-          botMessageDiv.className = "bot-msg";
-        //   botMessageDiv.textContent = `Bot: ${text}`;
-        botMessageDiv.innerHTML=`<img src="images/robot_3558860.png" alt="Bot" class="avatar">${text}`;
-          document.querySelector(".msg-container").appendChild(botMessageDiv);
-  
-          // Clear the input field
-          document.querySelector(".user-input").value = "";
-       }
-      </script> -->
       <script type="module">
         import { GoogleGenerativeAI } from "@google/generative-ai";
       
@@ -86,30 +50,36 @@
         document.querySelector(".btn").addEventListener("click", run);
       
         async function run() {
-          const userInput = document.querySelector(".user-input").value;
-      
-          // Display user message
-          const userMessageDiv = document.createElement("div");
-          userMessageDiv.className = "user-msg";
-          userMessageDiv.innerHTML = `${userInput} <img src="images/user_1177568.png" alt="User" class="avatar"> `;
-          document.querySelector(".msg-container").appendChild(userMessageDiv);
-      
-          const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-          const result = await model.generateContent(userInput);
-          const response = await result.response;
-          const text = await response.text();
-      
-          // Convert bot message from Markdown to HTML
-          const md = window.markdownit(); // Create a new instance of markdown-it
-          const botMessageDiv = document.createElement("div");
-          botMessageDiv.className = "bot-msg";
-          botMessageDiv.innerHTML = `<img src="images/robot_3558860.png" alt="Bot" class="avatar">${md.render(text)}`;
-          document.querySelector(".msg-container").appendChild(botMessageDiv);
-      
-          // Clear the input field
-          document.querySelector(".user-input").value = "";
+            const userInput = document.querySelector(".user-input").value;
+        
+            // Display user message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.className = "user-msg";
+            userMessageDiv.innerHTML = ` ${userInput}<img src="images/user_1177568.png" alt="User" class="avatar">`;
+            document.querySelector(".msg-container").appendChild(userMessageDiv);
+            // Append user question to the left div
+            document.querySelector(".user-questions").appendChild(userMessageDiv.cloneNode(true));
+        
+            const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+            const result = await model.generateContent(userInput);
+            const response = await result.response;
+            const text = await response.text();
+            
+            const sections = text.split("\n\n"); 
+    
+            // Convert bot message from Markdown to HTML
+            const md = window.markdownit(); // Create a new instance of markdown-it
+            
+            sections.forEach(sectionText => {
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.className = "bot-msg";
+                botMessageDiv.innerHTML = `<img src="images/robot_3558860.png" alt="Bot" class="avatar">${md.render(sectionText)}`;
+                document.querySelector(".msg-container").appendChild(botMessageDiv);
+            });
+    
+            // Clear the input field
+            document.querySelector(".user-input").value = "";
         }
-      </script>
-      
+    </script>
 </body>
 </html>
