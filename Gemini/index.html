@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gemini</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+
 </head>
 <body>
    <div class="container">
@@ -41,7 +43,7 @@
         }
       </script>
   
-      <script type="module">
+      <!-- <script type="module">
         import { GoogleGenerativeAI } from "@google/generative-ai";
   
         const API_KEY = "AIzaSyC1oRcJ7eAQaAO4kBqTJMt2w-ekoOCfj-I";
@@ -74,6 +76,40 @@
           // Clear the input field
           document.querySelector(".user-input").value = "";
        }
+      </script> -->
+      <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+      
+        const API_KEY = "AIzaSyC1oRcJ7eAQaAO4kBqTJMt2w-ekoOCfj-I";
+        const genAI = new GoogleGenerativeAI(API_KEY);
+        
+        document.querySelector(".btn").addEventListener("click", run);
+      
+        async function run() {
+          const userInput = document.querySelector(".user-input").value;
+      
+          // Display user message
+          const userMessageDiv = document.createElement("div");
+          userMessageDiv.className = "user-msg";
+          userMessageDiv.innerHTML = `${userInput} <img src="images/user_1177568.png" alt="User" class="avatar"> `;
+          document.querySelector(".msg-container").appendChild(userMessageDiv);
+      
+          const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+          const result = await model.generateContent(userInput);
+          const response = await result.response;
+          const text = await response.text();
+      
+          // Convert bot message from Markdown to HTML
+          const md = window.markdownit(); // Create a new instance of markdown-it
+          const botMessageDiv = document.createElement("div");
+          botMessageDiv.className = "bot-msg";
+          botMessageDiv.innerHTML = `<img src="images/robot_3558860.png" alt="Bot" class="avatar">${md.render(text)}`;
+          document.querySelector(".msg-container").appendChild(botMessageDiv);
+      
+          // Clear the input field
+          document.querySelector(".user-input").value = "";
+        }
       </script>
+      
 </body>
 </html>
