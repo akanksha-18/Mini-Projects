@@ -5,17 +5,24 @@
   
   .left {
     flex: 1;
-    background-color: lightblue;
+    /* background-color: lightblue; */
+    background: rgb(110,103,103);
+background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(8,10,10,1) 100%, rgba(21,32,168,0.9389005602240896) 100%);
     width: 100px;
     
   }
   
   .right {
     flex: 3;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
+    /* background: rgb(110,103,103);
+    background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(8,10,10,1) 100%, rgba(21,32,168,0.9389005602240896) 100%); */
     width: 300px;
     position: relative; 
-  
+    background-image: url(images/dark.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
   }
   
   
@@ -38,12 +45,21 @@
   }
   
   .user-msg {
-    background-color: #e6e6e6;
+    /* background-color: #e6e6e6; */
+    background-color: #766f6f;
+    color: #ebe7e7;
+    font-weight: 900;
+    font-size: large;
     justify-content: flex-end;
+    margin-right: auto;
+    gap: 1rem;
   }
   
   .bot-msg {
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
+    background-color: #333;
+    font-size: large;
+    color: #ebe7e7;
   }
   
   .user-input-div {
@@ -58,13 +74,14 @@
   
   .user-input {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #323030;
     padding: 10px;
     border-radius: 4px;
+    width: 50%;
   }
   
   .btn {
-    padding: 8px 16px;
+    padding: 4px 8px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -76,3 +93,43 @@
     background-color: #333;
     color: #fff;
   }
+  .container.dark-mode .left {
+    /* background: rgb(249, 243, 243);
+    color: black; */
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #d7d9e0 0%, #fefefe 46%, #e6e5e5 100%); 
+/* background: radial-gradient(circle, rgba(110,103,103,1) 0%, rgba(8,10,10,1) 100%, rgba(21,32,168,0.9389005602240896) 100%); */
+}
+.container.dark-mode .left .user-questions h3 {
+  color: black !important;
+}
+.container.dark-mode .right {
+    /* background: white; */
+    /* background-color: #4158D0;
+    background-image: linear-gradient(43deg, #d7d9e0 0%, #f8d6f5 46%, #fcf1de 100%); 
+    color: black; */
+    background-image: url(images/default.jpg);
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+  
+}
+.toggle-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  position: fixed;
+  bottom: 20px;
+  left: 10%;
+  transform: translateX(-50%);
+  z-index: 999; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3;
+}
