@@ -3,30 +3,75 @@ let searchInput=document.querySelector("#pokemon-search-input");
 let filterBtn=document.querySelector("#filterbtn");
 let type=document.querySelector("#type");
 let colors={
-    normal:'grey',
-    grass:'green',
-    poison:'purple',
-    rock:'brown'
+    normal:'#51ff0d',
+    grass:'#4FA64F',
+    poison:'#8E0FED',
+    rock:'#DAA06D',
+    bug:'#F0E68C',
+    ghost:'#F2D2BD',
+    fire:'#FFC300 ',
+    water:'#89CFF0',
+    electric:'#7DF9FF',
+    psychic:'#625981',
+    ice:'#00FCFC',
+    dragon:'#F75700',
+    fairy:'#E36B89',
+    ground:'#E5FC9A',
+    fighting:'#9AFCC6'
 }
-function createPokemoncard(details){
-    let card=document.createElement("div");
+// function createPokemoncard(details){
+//     let card=document.createElement("div");
+//     card.classList.add("card");
+    
+//     card.innerHTML=`<div class='card-inner'>
+//     <div class='card-front'>
+//         <div class='id'>${details.id}</div>
+//         <img src='${details.sprites.front_default}'>
+//         <div class='name'>${details.name}</div>
+//         <div class='type'>${details.types[0].type.name}</div>
+//     </div>
+//     <div class='card-back'>
+//         <div class='id'>${details.id}</div>
+//         <img src='${details.sprites.back_default}'>
+//         <div class='ability'>${details.abilities[0].ability.name}</div>
+//         <div class='name'>${details.name}</div>
+//     </div>
+// </div>`
+
+//     card.querySelector('.card-inner').style.backgroundColor=colors[details.types[0].type.name];
+//     return card;
+// }
+function createPokemoncard(details) {
+    let card = document.createElement("div");
     card.classList.add("card");
     
-    card.innerHTML=`<div class='card-inner'>
-    <div class='card-front'>
+    let cardInner = document.createElement("div");
+    cardInner.classList.add("card-inner");
+
+    let cardFront = document.createElement("div");
+    cardFront.classList.add("card-front");
+    cardFront.innerHTML = `
         <div class='id'>${details.id}</div>
         <img src='${details.sprites.front_default}'>
         <div class='name'>${details.name}</div>
         <div class='type'>${details.types[0].type.name}</div>
-    </div>
-    <div class='card-back'>
+    `;
+    cardInner.appendChild(cardFront);
+
+    let cardBack = document.createElement("div");
+    cardBack.classList.add("card-back");
+    cardBack.innerHTML = `
         <div class='id'>${details.id}</div>
         <img src='${details.sprites.back_default}'>
         <div class='ability'>${details.abilities[0].ability.name}</div>
         <div class='name'>${details.name}</div>
-    </div>
-</div>`
-    card.querySelector('.card-inner').style.backgroundColor=colors[details.types[0].type.name];
+    `;
+    cardInner.appendChild(cardBack);
+
+    card.appendChild(cardInner);
+
+    cardFront.style.backgroundColor = colors[details.types[0].type.name]; // Apply color to the front card
+    cardBack.style.backgroundColor = colors[details.types[0].type.name]; // Apply color to the back card
     return card;
 }
 

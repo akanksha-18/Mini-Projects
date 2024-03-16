@@ -113,7 +113,7 @@ button:hover {
   flex-wrap: wrap;
 }
 
-.card {
+/* .card {
   width: 200px; 
   height: 300px; 
   display: inline-block;
@@ -122,6 +122,7 @@ button:hover {
   perspective: 1000px; 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
   background: linear-gradient(45deg, #ffffff, #f0f0f0); 
+  
 }
 
 .card-inner {
@@ -130,6 +131,7 @@ button:hover {
   height: 100%;
   transform-style: preserve-3d;
   transition: transform 0.5s ease; 
+  
 }
 .card:hover .card-back {
   top: 0; 
@@ -155,7 +157,7 @@ button:hover {
   top: 100%; 
   background-color: #f9f9f9;
   z-index: 1;
-}
+} */
 .card {
   position: relative; 
   width: 200px; 
@@ -167,7 +169,14 @@ button:hover {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
   background: linear-gradient(45deg, #ffffff, #f0f0f0); 
   overflow: hidden; 
+  -webkit-box-shadow:0px 0px 144px 8px rgba(173,48,48,0.9);
+  -moz-box-shadow: 0px 0px 144px 8px rgba(173,48,48,0.9);
+  box-shadow: 0px 0px 144px 8px rgba(173,48,48,0.9);
 }
+.card:hover {
+  transform: scale(1.08); 
+}
+
 
 .card .id {
   position: absolute;
@@ -192,7 +201,7 @@ button:hover {
   position: absolute;
   backface-visibility: hidden;
   border-radius: 20px; 
-  transition: top 0.5s ease, opacity 0.3s ease; 
+  transition: top 0.5s ease, opacity 0.3s ease, transform 0.5s ease;; 
 }
 
 .card-front {
@@ -219,7 +228,7 @@ button:hover {
 .type {
   font-size: 16px;
   margin-top: 5px;
-  background-color: #78C850; 
+  background-color: #e9515b; 
   color: #fff;
   padding: 4px 8px;
   border-radius: 6px;
@@ -237,12 +246,13 @@ img {
   margin-bottom: 10px;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 img:hover {
-  transform: scale(1.05); 
-} 
+  transform: scale(1.1) rotate(10deg); /* Rotate the image slightly */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
 /* .card:hover .card-inner {
   transform: rotateY(180deg);
 }
@@ -400,7 +410,7 @@ img:hover {
   transform: scale(1.05); 
 } */
 
-#grass {
+/* #grass {
   background-color: #9bcc50;
 }
 
@@ -463,4 +473,4 @@ img:hover {
 
 #rock {
   background-color: #a38c21;
-}
+} */
