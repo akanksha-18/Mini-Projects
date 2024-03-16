@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="background-color: black;">
+    <header>
+    <h1>G e e k e m o n</h1>
+    <img src="images/pokemon-png-18164.png" class="ball">
+   </header>
+    <main>
+        <form id="pokemon-type-filter">
+            <select name="type" class="type-filter" id="type">
+                <option value="">Types</option>
+                <option value="grass" id="grass">grass</option>
+                <option value="poison" id="poison">poison</option>
+                <option value="ground" id="ground">ground</option>
+                <option value="rock" id="rock">rock</option>
+                <option value="bug" id="bug">bug</option>
+                <option value="ghost" id="ghost">ghost</option>
+                <option value="fire" id="fire">fire</option>
+                <option value="water" id="water">water</option>
+                <option value="electric" id="electric">electric</option>
+                <option value="psychic" id="psychic">psychic</option>
+                <option value="ice" id="ice">ice</option>
+                <option value="dragon" id="dragon">dragon</option>
+                <option value="fairy" id="fairy">fairy</option>
+            </select>
+            <input type="submit" value="Filter by Type" id="filterbtn">
+            <input id="pokemon-search-input" type="text" name="" placeholder="Enter Pokémon Name">
+            <button onclick="window.location.reload();">Reset</button>
+        </form>
+    </main>
+    <section id="pokemon-card-container">
+
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
