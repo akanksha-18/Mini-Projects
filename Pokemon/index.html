@@ -6,14 +6,14 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color:#D2042D;">
+<body style="background-color:black;">
     <header>
     <h1>G e e k e m o n</h1>
     <img src="images/pokemon-png-18164.png" class="ball">
    </header>
     <main>
         <form id="pokemon-type-filter">
-            <select name="type" class="type-filter" id="type">
+            <select name="type" class="type-filter" id="type" style="border-radius: 20px;border: none;">
                 <option value="">Types</option>
                 <option value="grass" id="grass">grass</option>
                 <option value="poison" id="poison">poison</option>
@@ -29,9 +29,9 @@
                 <option value="dragon" id="dragon">dragon</option>
                 <option value="fairy" id="fairy">fairy</option>
             </select>
-            <input type="submit" value="Filter by Type" id="filterbtn">
-            <input id="pokemon-search-input" type="text" name="" placeholder="Enter Pokémon Name">
-            <button onclick="window.location.reload();">Reset</button>
+            <input type="submit" value="Filter by Type" id="filterbtn" style="border-radius: 20px;">
+            <input id="pokemon-search-input" type="text" name="" placeholder="Enter Pokemon Name" style="border-radius: 20px;">
+            <button onclick="window.location.reload();" style="font-weight: bold; border-radius: 20px;">Reset</button>
         </form>
     </main>
     <section id="pokemon-card-container">

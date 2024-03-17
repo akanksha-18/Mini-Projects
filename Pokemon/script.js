@@ -55,6 +55,7 @@ function createPokemoncard(details) {
         <img src='${details.sprites.front_default}'>
         <div class='name'>${details.name}</div>
         <div class='type'>${details.types[0].type.name}</div>
+        <div class='height'>Height:${details.height}</div>
     `;
     cardInner.appendChild(cardFront);
 
@@ -65,6 +66,7 @@ function createPokemoncard(details) {
         <img src='${details.sprites.back_default}'>
         <div class='ability'>${details.abilities[0].ability.name}</div>
         <div class='name'>${details.name}</div>
+        <div class='weight'>Weight:${details.weight}</div>
     `;
     cardInner.appendChild(cardBack);
 
@@ -90,20 +92,36 @@ searchInput.addEventListener('input', () => {
     });
 });
 
+// filterBtn.addEventListener('click', (event) => {
+//     event.preventDefault(); 
+
+//     let allCards = document.querySelectorAll(".card");
+//     let pokeArray = Array.from(allCards);
+//     pokeArray.forEach((element) => {
+//         let pokemonType = element.querySelector('.type').innerText;
+//         if (type.value === "" || pokemonType.toLowerCase() === type.value.toLowerCase()) {
+//             element.style.display = "block";
+//         } else {
+//             element.style.display = "none";
+//         }
+//     });
+// });
 filterBtn.addEventListener('click', (event) => {
     event.preventDefault(); 
 
     let allCards = document.querySelectorAll(".card");
     let pokeArray = Array.from(allCards);
     pokeArray.forEach((element) => {
-        let pokemonType = element.querySelector('.type').innerText;
-        if (type.value === "" || pokemonType.toLowerCase() === type.value.toLowerCase()) {
+        let pokemonType = element.querySelector('.type').innerText.toLowerCase();
+        let selectedType = type.value.toLowerCase();
+        if (selectedType === "" || pokemonType === selectedType) {
             element.style.display = "block";
         } else {
             element.style.display = "none";
         }
     });
 });
+
 
 
 async function fetchPokemon(i){

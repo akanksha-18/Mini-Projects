@@ -15,15 +15,15 @@ h1 {
 
   @keyframes glowing {
     0% {
-      color: #FFD700; /* Gold color */
+      color: #FFD700; 
       text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 80px #FFD700, 0 0 160px #FFD700, 0 0 320px #FFD700, 0 0 640px #FFD700;
     }
     50% {
-      color: #ffd70080; /* Semi-transparent gold color */
+      color: #ffd70080; 
       text-shadow: none;
     }
     100% {
-      color: #FFD700; /* Gold color */
+      color: #FFD700; 
       text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 80px #FFD700, 0 0 160px #FFD700, 0 0 320px #FFD700, 0 0 640px #FFD700;
     }
   }
@@ -73,10 +73,11 @@ h1 {
 .type-filter,
 #pokemon-search-input {
     padding: 10px; 
-    border: 2px solid #ccc; 
+    border: none; 
     border-radius: 5px; 
     margin-right: 10px; 
-    background-color: #ffd700cc;
+    font-weight: bold;
+    background-color:  #FFD700;
 }
 
 /* Submit button */
@@ -85,6 +86,7 @@ button {
     padding: 10px 20px; 
     background-color: #FFD700; 
     color: black; 
+    font-weight: bold;
     border: none; 
     border-radius: 5px; 
     cursor: pointer; 
@@ -99,7 +101,8 @@ button:hover {
 
 
 ::placeholder {
-    color: white; 
+    color: black; 
+    font-weight: bold;
 }
 
 
@@ -158,21 +161,50 @@ button:hover {
   background-color: #f9f9f9;
   z-index: 1;
 } */
-.card {
-  position: relative; 
-  width: 200px; 
-  height: 300px; 
-  display: inline-block;
-  margin: 10px; 
-  border-radius: 20px;
-  perspective: 1000px; 
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
-  background: linear-gradient(45deg, #ffffff, #f0f0f0); 
-  overflow: hidden; 
-  -webkit-box-shadow:0px 0px 144px 8px rgba(173,48,48,0.9);
-  -moz-box-shadow: 0px 0px 144px 8px rgba(173,48,48,0.9);
-  box-shadow: 0px 0px 144px 8px rgba(173,48,48,0.9);
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.card {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  display: inline-block;
+  margin: 10px;
+  border-radius: 20px;
+  perspective: 1000px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(45deg, #ffffff, #f0f0f0);
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 144px 8px rgba(173, 48, 48, 0.9);
+  -moz-box-shadow: 0px 0px 144px 8px rgba(173, 48, 48, 0.9);
+  box-shadow: 0px 0px 144px 8px rgba(173, 48, 48, 0.9);
+  animation: slideInFromLeft 0.5s ease forwards;
+}
+
+.card:nth-child(odd) {
+  animation: slideInFromRight 0.5s ease forwards;
+}
+
 .card:hover {
   transform: scale(1.08); 
 }
@@ -201,7 +233,7 @@ button:hover {
   position: absolute;
   backface-visibility: hidden;
   border-radius: 20px; 
-  transition: top 0.5s ease, opacity 0.3s ease, transform 0.5s ease;; 
+  transition: top 0.1s ease, opacity 0.3s ease, transform 0.5s ease;; 
 }
 
 .card-front {
@@ -224,7 +256,26 @@ button:hover {
   margin-top: 10px;
   text-align: center;
 }
-
+.height {
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #333; 
+  background-color: #f0f0f0; 
+  padding: 5px 10px;
+  border-radius: 5px; 
+  margin-top: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.weight{
+  font-size: 18px; 
+  font-weight: bold; 
+  color: #333; 
+  background-color: #f0f0f0; 
+  padding: 5px 10px;
+  border-radius: 5px; 
+  margin-top: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 .type {
   font-size: 16px;
   margin-top: 5px;
@@ -241,8 +292,8 @@ button:hover {
 }
 
 img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   margin-bottom: 10px;
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -250,7 +301,7 @@ img {
 }
 
 img:hover {
-  transform: scale(1.1) rotate(10deg); /* Rotate the image slightly */
+  transform: scale(1.1) rotate(10deg); 
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 /* .card:hover .card-inner {
@@ -410,67 +461,4 @@ img:hover {
   transform: scale(1.05); 
 } */
 
-/* #grass {
-  background-color: #9bcc50;
-}
 
-#bug {
-  background-color: #729f3f;
-}
-
-#fire {
-  background-color :#fd7d24;
-}
-
-#water {
-  background-color: #4592c4;
-}
-
-#ice {
-  background-color: #51c4e7;
-}
-
-#electric {
-  background-color: #eed535;
-}
-
-#psychic {
-  background-color:  #f366b9;
-}
-
-
-#fairy {
-  background-color: #fdb9e9;
-}
-
-#ghost {
-  background-color: #7b62a3;
-}
-
-#ground {
-  background-color: #f7de3f;
-}
-
-#poison {
-  background-color: #b97fc9;
-}
-
-#fairy {
-  background-color: #fdb9e9;
-}
-
-#normal {
-  background-color: #a4acaf;
-}
-
-#dragon {
-  background-color: goldenrod;
-}
-
-#fighting {
-  background-color: #d56723;
-}
-
-#rock {
-  background-color: #a38c21;
-} */
