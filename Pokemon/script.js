@@ -19,28 +19,7 @@ let colors={
     ground:'#E5FC9A',
     fighting:'#9AFCC6'
 }
-// function createPokemoncard(details){
-//     let card=document.createElement("div");
-//     card.classList.add("card");
-    
-//     card.innerHTML=`<div class='card-inner'>
-//     <div class='card-front'>
-//         <div class='id'>${details.id}</div>
-//         <img src='${details.sprites.front_default}'>
-//         <div class='name'>${details.name}</div>
-//         <div class='type'>${details.types[0].type.name}</div>
-//     </div>
-//     <div class='card-back'>
-//         <div class='id'>${details.id}</div>
-//         <img src='${details.sprites.back_default}'>
-//         <div class='ability'>${details.abilities[0].ability.name}</div>
-//         <div class='name'>${details.name}</div>
-//     </div>
-// </div>`
 
-//     card.querySelector('.card-inner').style.backgroundColor=colors[details.types[0].type.name];
-//     return card;
-// }
 function createPokemoncard(details) {
     let card = document.createElement("div");
     card.classList.add("card");
@@ -72,8 +51,8 @@ function createPokemoncard(details) {
 
     card.appendChild(cardInner);
 
-    cardFront.style.backgroundColor = colors[details.types[0].type.name]; // Apply color to the front card
-    cardBack.style.backgroundColor = colors[details.types[0].type.name]; // Apply color to the back card
+    cardFront.style.backgroundColor = colors[details.types[0].type.name]; 
+    cardBack.style.backgroundColor = colors[details.types[0].type.name]; 
     return card;
 }
 
