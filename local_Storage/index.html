@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Save Textarea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f7f7; /* Light gray background */
+            transition: background-color 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            background-color: #fff; /* White container background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            transition: background-color 0.3s ease;
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2; /* Blue heading color */
+        }
+        #myTextarea {
+            width: 100%;
+            padding: 1px;
+            border: 2px solid #4a90e2; /* Blue border */
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            color: #333; /* Text color */
+            outline: none;
+        }
+        #themeSelect {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f0f0f0; /* Light gray select background */
+            border: 1px solid #ccc; /* Gray select border */
+            color: #333; /* Select text color */
+        }
+        /* Dark theme background image */
+        body.dark {
+            background-image: url('images/2.jpg'); /* URL of dark background image */
+            background-size: cover;
+            background-position: center;
+        }
+        /* Light theme background image */
+        body.light {
+            background-image: url('images/1.jpg'); /* URL of light background image */
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="themeContainer">
+        <h1>Auto Save Textarea</h1>
+        <label for="themeSelect">Select Theme:</label>
+        <select id="themeSelect" onchange="changeTheme(this.value)">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+        <textarea id="myTextarea" rows="10" cols="50" placeholder="Start typing here..."></textarea>
+    </div>
+
+    <script>
+        const myTextarea = document.getElementById('myTextarea');
+
+        // Load stored text when the page loads
+        window.onload = function() {
+            const storedText = localStorage.getItem('autosave_text');
+            if (storedText) {
+                myTextarea.value = storedText;
+            }
+        };
+
+        // Save text to localStorage whenever it changes
+        myTextarea.addEventListener('input', function() {
+            localStorage.setItem('autosave_text', myTextarea.value);
+        });
+
+        function changeTheme(theme) {
+            const body = document.body;
+            const container = document.getElementById('themeContainer');
+
+            if (theme === 'dark') {
+                body.classList.add('dark'); /* Add 'dark' class to body */
+                body.classList.remove('light'); /* Remove 'light' class from body */
+                container.style.backgroundColor = '#333'; /* Dark container background */
+                container.style.color = '#fff'; /* White text color */
+            } else {
+                body.classList.add('light'); /* Add 'light' class to body */
+                body.classList.remove('dark'); /* Remove 'dark' class from body */
+                container.style.backgroundColor = '#fff'; /* White container background */
+                container.style.color = '#333'; /* Dark text color */
+            }
+        }
+    </script>
+</body>
+</html>
