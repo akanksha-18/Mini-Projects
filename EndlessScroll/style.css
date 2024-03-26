@@ -1,7 +1,7 @@
 body{
     margin: 0;
     box-sizing: border-box;
-    background: whitesmoke;
+    background:black;
 }
 h1{
     text-align: center;
@@ -9,6 +9,7 @@ h1{
     margin-bottom: 15px;
     font-size: 40px;
     letter-spacing: 5px;
+    color: whitesmoke;
 }
 .loader{
     position: fixed;
@@ -28,8 +29,12 @@ h1{
     margin: 10px 30px;
 }
 .image-container img{
-    width: 100%;
-    margin-top: 5px;   
+    /* width: 100%;
+    height: auto;
+    margin-top: 5px;    */
+    width: 50%; /* Set the maximum width to 100% of the container */
+    height: 300px; /* Set a maximum height, adjust as needed */
+    margin-top: 5px;
 }
 @media screen and (max-width:600px) {
     h1{
